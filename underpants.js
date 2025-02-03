@@ -21,6 +21,9 @@ var _ = {};
 *   _.identity({a: "b"}) === {a: "b"}
 */
 
+_.identity = function (value){
+return value;
+}
 
 /** _.typeOf
 * Arguments:
@@ -42,6 +45,9 @@ var _ = {};
 * _.typeOf([1,2,3]) -> "array"
 */
 
+_.typeOf = function (value){
+    
+    }
 
 /** _.first
 * Arguments:
@@ -61,6 +67,9 @@ var _ = {};
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 
+_.first = function (value){
+    
+}
 
 /** _.last
 * Arguments:
@@ -209,6 +218,22 @@ var _ = {};
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
+_.map = function (collection, func){
+    let output = [];
+if(Array.isArray(collection)){//determine if collection is array
+for(let i = 0; i < collection.length; i++){
+    let result = func(collection[i], i, collection);
+    output.push(collection[i], i , collection)
+}
+}else{//else, we can assume the collection is an object
+for (let key in object){
+    let result = func(object[key], key, object){
+        output.push(object[key], key, object)
+    }
+}
+}
+    return output;
+}
 
 /** _.pluck
 * Arguments:
