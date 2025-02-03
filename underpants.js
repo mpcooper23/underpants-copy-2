@@ -152,6 +152,9 @@ return arr.slice(-num) // slice -num
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+_.indexOf = function (){
+
+}
 
 /** _.contains
 * Arguments:
@@ -194,6 +197,10 @@ return false //place return false outside of loop so that every value is tested
 *      -> should log "a" "b" "c" to the console
 */
 
+_.each = function(){
+    
+}
+
 
 /** _.unique
 * Arguments:
@@ -222,6 +229,9 @@ return false //place return false outside of loop so that every value is tested
 *   use _.each in your implementation
 */
 
+_.filter = function(){
+
+}
 
 /** _.reject
 * Arguments:
@@ -236,6 +246,9 @@ return false //place return false outside of loop so that every value is tested
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
+_.reject = function (){
+
+}
 
 /** _.partition
 * Arguments:
@@ -255,6 +268,8 @@ return false //place return false outside of loop so that every value is tested
 *   }); -> [[2,4],[1,3,5]]
 }
 */
+
+_.partition = function(){}
 
 
 /** _.map
@@ -300,6 +315,9 @@ for (let key in collection){
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 
+_.pluck = function (){
+
+}
 
 /** _.every
 * Arguments:
@@ -322,6 +340,9 @@ for (let key in collection){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+_.every = function(){
+
+}
 
 /** _.some
 * Arguments:
@@ -344,6 +365,9 @@ for (let key in collection){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(){
+
+}
 
 /** _.reduce
 * Arguments:
@@ -364,6 +388,9 @@ for (let key in collection){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+_.reduce = function(){
+
+}
 
 /** _.extend
 * Arguments:
@@ -379,6 +406,10 @@ for (let key in collection){
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+_.extend = function (){
+
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
