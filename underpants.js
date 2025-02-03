@@ -21,9 +21,11 @@ var _ = {};
 *   _.identity({a: "b"}) === {a: "b"}
 */
 
-_.identity = function (value){
-return value;
+_.identity = function(value){
+return value 
 }
+
+
 
 /** _.typeOf
 * Arguments:
@@ -43,10 +45,33 @@ return value;
 * _.typeOf(134) -> "number"
 * _.typeOf("javascript") -> "string"
 * _.typeOf([1,2,3]) -> "array"
+
+I: value
+O: type of value in string
+C:
+E:
+
+
 */
 
 _.typeOf = function (value){
-    
+        if (typeof value === 'string') {
+          return 'string';
+        } else if (typeof value === 'number') {
+          return 'number';
+        } else if (Array.isArray(value)) {
+          return 'array';
+        } else if (typeof value === 'undefined') {
+          return 'undefined';
+        } else if (typeof value === 'boolean') {
+          return 'boolean';
+        } else if (value === null) { // Check for null explicitly
+          return 'null';
+        } else if (typeof value === 'object') {
+          return 'object';
+        } else if (typeof value === 'function') {
+          return 'function';
+        }
     }
 
 /** _.first
@@ -67,8 +92,17 @@ _.typeOf = function (value){
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
 
-_.first = function (value){
-    
+_.first = function (arr, num){
+    if (!Array.isArray(arr)) {//if <array> is not an array, return []
+        return [];
+      }
+      if (num === undefined || typeof num !== 'number') {//If <number> is not given or not a number, return just the first element in <array>.
+        return arr[0];
+      }
+      if (num < 0) {
+        return [];
+      }
+      return arr.slice(0, num);//otherwise, return first <num> of items in array
 }
 
 /** _.last
@@ -89,6 +123,9 @@ _.first = function (value){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
+_.last = function(){
+
+}
 
 /** _.indexOf
 * Arguments:
@@ -223,7 +260,7 @@ _.map = function (collection, func){
 if(Array.isArray(collection)){//determine if collection is array
 for(let i = 0; i < collection.length; i++){
     let result = func(collection[i], i, collection);
-    output.push(collection[i], i , collection)
+    output.push(result)
 }
 }else{//else, we can assume the collection is an object
 for (let key in collection){
