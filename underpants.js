@@ -226,10 +226,9 @@ for(let i = 0; i < collection.length; i++){
     output.push(collection[i], i , collection)
 }
 }else{//else, we can assume the collection is an object
-for (let key in object){
-    let result = func(object[key], key, object){
-        output.push(object[key], key, object)
-    }
+for (let key in collection){
+    let result = func(collection[key], key, collection);
+        output.push(result)
 }
 }
     return output;
