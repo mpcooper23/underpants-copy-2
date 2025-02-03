@@ -99,7 +99,7 @@ _.first = function (arr, num){
       if (num === undefined || typeof num !== 'number') {//If <number> is not given or not a number, return just the first element in <array>.
         return arr[0];
       }
-      if (num < 0) {
+      if (num < 0) {//Edge case: number is negative
         return [];
       }
       return arr.slice(0, num);//otherwise, return first <num> of items in array
@@ -123,8 +123,17 @@ _.first = function (arr, num){
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
-_.last = function(){
-
+_.last = function(arr, num){
+if(!Array.isArray(arr)){
+    return [];
+}
+ if (num === undefined || typeof num !== 'number'){
+    return arr[arr.length - 1]
+}
+if(num < 0){
+    return []
+}
+return arr.slice(-num) // slice -num
 }
 
 /** _.indexOf
@@ -158,6 +167,15 @@ _.last = function(){
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = function(array, value){
+for (let i = 0; i < array.length; i++){
+    if(array[i] === value){
+        return true;
+    }
+}
+return false //place return false outside of loop so that every value is tested
+}
 
 
 /** _.each
