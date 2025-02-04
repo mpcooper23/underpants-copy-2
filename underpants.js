@@ -227,7 +227,8 @@ if (Array.isArray(collection)){
 */
 
 _.unique = function(array){
-
+let uniqueArr = [...new Set(array)];
+return uniqueArr;
 }
 
 /** _.filter
@@ -343,7 +344,7 @@ _.pluck = function (){
 
 }
 
-/** _.every
+/** _.every <== like all-strings-pass function
 * Arguments:
 *   1) A collection
 *   2) A function
@@ -364,8 +365,16 @@ _.pluck = function (){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
-_.every = function(){
-
+_.every = function(collection, func){
+  if(Array.isArray(collection)){//determine if collection is array
+    for(let i = 0; i < collection.length; i++){
+        let result = func(collection[i], i, collection);   
+    }
+    }else{//else, we can assume the collection is an object
+    for (let key in collection){
+        let result = func(collection[key], key, collection);
+    }
+    }
 }
 
 /** _.some
