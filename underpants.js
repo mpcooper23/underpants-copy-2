@@ -226,6 +226,9 @@ if (Array.isArray(collection)){
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+_.unique = function(array){
+
+}
 
 /** _.filter
 * Arguments:
