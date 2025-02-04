@@ -271,8 +271,16 @@ return trues; //return output
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
-_.reject = function (){
-
+_.reject = function (array, func){
+let falses = []
+  for(let i = 0; i < array.length; i++){
+    let result = func(array[i], i, array)
+  
+  if(!result){
+    falses.push(array[i])//push array[i], not "result", which is the function
+  }
+}
+  return falses; 
 }
 
 /** _.partition
@@ -294,7 +302,19 @@ _.reject = function (){
 }
 */
 
-_.partition = function(){}
+_.partition = function(array, func){
+  let truthy = [];
+  let falsey = [];
+  for (let i = 0; i < array.length; i++){
+    let result = func(array[i], i, array)
+    if(!result){
+falsey.push(array[i])
+    }else {
+truthy.push(array[i])
+    }
+  }
+  return [truthy, falsey];//need to return each output array in its own array
+}
 
 
 /** _.map
@@ -338,10 +358,15 @@ for (let key in collection){
 *   2) You must use _.map() in your implementation.
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
+
+I: array of objects, property to add
+O: array of value of property for every element in array
+C: map
+E:
 */
 
-_.pluck = function (){
-
+_.pluck = function (array, prop){
+return array.map(obj => obj[prop])
 }
 
 /** _.every <== like all-strings-pass function
@@ -398,8 +423,16 @@ _.every = function(collection, func){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
-_.some = function(){
-
+_.some = function(collection, func){
+  if(Array.isArray(collection)){//determine if collection is array
+    for(let i = 0; i < collection.length; i++){
+        let result = func(collection[i], i, collection);   
+    }
+    }else{//else, we can assume the collection is an object
+    for (let key in collection){
+        let result = func(collection[key], key, collection);
+    }
+    }
 }
 
 /** _.reduce
@@ -421,7 +454,7 @@ _.some = function(){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
-_.reduce = function(){
+_.reduce = function(array, func, seed){
 
 }
 
@@ -440,7 +473,7 @@ _.reduce = function(){
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
-_.extend = function (){
+_.extend = function (obj, obj2){
 
 }
 
