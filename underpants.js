@@ -152,9 +152,15 @@ return arr.slice(-num) // slice -num
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
-_.indexOf = function (){
-
+_.indexOf = function (array, value){
+for (let i = 0; i < array.length; i++){
+    if (array[i] === value){
+        return i; //return the index of the first occurence 
+    }
 }
+    return - 1; //return - 1 if value is not found
+}
+
 
 /** _.contains
 * Arguments:
@@ -197,8 +203,16 @@ return false //place return false outside of loop so that every value is tested
 *      -> should log "a" "b" "c" to the console
 */
 
-_.each = function(){
-    
+_.each = function(collection, func){
+if (Array.isArray(collection)){
+    for(let i = 0; i < collection.length; i++){
+        let result = func(collection[i], i, collection)
+    }
+}else {
+    for(let key in collection){
+        let result = func(collection[key], key, collection)
+    }
+}
 }
 
 
