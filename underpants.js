@@ -390,17 +390,34 @@ return array.map(obj => obj[prop])
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
-_.every = function(collection, func){
-  if(Array.isArray(collection)){//determine if collection is array
-    for(let i = 0; i < collection.length; i++){
-        let result = func(collection[i], i, collection);   
+_.every = function(collection, func) {
+  if (Array.isArray(collection)) { // Determine if collection is an array
+    if (func === undefined){
+    for (let i = 0; i < collection.length; i++) {
+      if (!collection[i]) { // Return false if any element does not satisfy the condition
+        return false;
+      }
     }
-    }else{//else, we can assume the collection is an object
-    for (let key in collection){
-        let result = func(collection[key], key, collection);
-    }
-    }
+    }else{//else it was
+for (let i = 0; i < collection.length; i++){
+  if(!func(collection[i], i, collection)){
+    return false;
+  }
 }
+    }
+  } else { // Assume the collection is an object
+    if(func === undefined){
+    for (let key in collection) {
+      let result = func(collection[key], key, collection);
+      if (!result) { // Return false if any property does not satisfy the condition
+        return false;
+      }
+    }
+  }
+  }
+  return true; // Return true if all elements/properties satisfy the condition
+}
+
 
 /** _.some
 * Arguments:
@@ -455,7 +472,18 @@ _.some = function(collection, func){
 */
 
 _.reduce = function(array, func, seed){
-
+let output; //initialize but don't declare output yet
+if(seed === undefined){ //if no seed value
+  output = array[0] //use arr[0] as seed
+  for(let i = 1; i < array.length; i++){//start index at 1, since seed is array[0]
+output = func(output, array[i], i)//reassign output to result of invoking callback func
+}}else {
+  output = seed; //else there is a seed value
+for(let i = 0; i < array.length; i++){
+  output = func(output, array[i], i)
+}
+}
+return output;
 }
 
 /** _.extend
