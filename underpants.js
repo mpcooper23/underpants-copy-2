@@ -501,7 +501,7 @@ return output;
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
-_.extend = function (obj, obj2){
+_.extend = function (obj, ...obj2){
 
 }
 
