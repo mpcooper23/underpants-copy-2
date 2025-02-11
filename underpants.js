@@ -440,17 +440,36 @@ for (let i = 0; i < collection.length; i++){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
-_.some = function(collection, func){
-  if(Array.isArray(collection)){//determine if collection is array
-    for(let i = 0; i < collection.length; i++){
-        let result = func(collection[i], i, collection);   
+_.some = function(collection, func) {
+  // If no function is provided, use a default function that checks for truthiness
+  func = func || ((value) => value);
+
+  if (Array.isArray(collection)) {
+    // Iterate over the array
+    for (let i = 0; i < collection.length; i++) {
+      // If the function returns true for any element, return true
+      if (func(collection[i], i, collection)) {
+        return true;
+      }
     }
-    }else{//else, we can assume the collection is an object
-    for (let key in collection){
-        let result = func(collection[key], key, collection);
+  } else {
+    // Assume the collection is an object
+    for (let key in collection) {
+      // If the function returns true for any property, return true
+      if (func(collection[key], key, collection)) {
+        return true;
+      }
     }
-    }
-}
+  }
+  // If no elements pass the test, return false
+  return false;
+};
+
+// Example usage:
+console.log(_.some([1, 2, 3], (num) => num > 2)); // Output: true
+console.log(_.some([1, 2, 3], (num) => num > 3)); // Output: false
+console.log(_.some({ a: 1, b: 2, c: 3 }, (value) => value === 2)); // Output: true
+
 
 /** _.reduce
 * Arguments:
@@ -515,7 +534,7 @@ for (let source of sources) {
 // Return the updated target object
 return target;
 }
-}
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
