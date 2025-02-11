@@ -501,8 +501,20 @@ return output;
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
-_.extend = function (obj, ...obj2){
-
+_.extend = function (target, ...sources){
+// Iterate over each source object
+for (let source of sources) {
+  // Iterate over each key in the source object
+  for (let key in source) {
+    // Copy the property to the target object
+    if (source.hasOwnProperty(key)) {
+      target[key] = source[key];
+    }
+  }
+}
+// Return the updated target object
+return target;
+}
 }
 
 //////////////////////////////////////////////////////////////////////
